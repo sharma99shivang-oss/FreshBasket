@@ -1,0 +1,2 @@
+import api from './api';
+export const getCoupons = () => api.get('/coupons').then((r) => r.data.data); export const createCoupon = (data) => api.post('/coupons', data).then((r) => r.data.data); export const updateCoupon = (id, data) => api.put(`/coupons/${id}`, data).then((r) => r.data.data); export const deleteCoupon = (id) => api.delete(`/coupons/${id}`); export const applyCoupon = (code, subtotal) => api.post('/coupons/apply', { code, subtotal }).then((r) => r.data.data);
