@@ -17,7 +17,7 @@ import couponRoutes from './routes/couponRoutes.js';
 import bannerRoutes from './routes/bannerRoutes.js';
 
 const app = express();
-const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:5173').split(',').map((origin) => origin.trim());
+const allowedOrigins = (process.env.CLIENT_URL || 'fresh-basket-alpha-three.vercel.app').split(',').map((origin) => origin.trim());
 const isLocalDevelopmentOrigin = (origin) => process.env.NODE_ENV !== 'production' && /^https?:\/\/(localhost|127\.0\.0\.1):\d+$/.test(origin);
 
 app.use(helmet());

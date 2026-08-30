@@ -7,14 +7,14 @@
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "seed": "node src/data/seed.js",
-     "seed:admin": "node src/data/seedAdmin.js",
+    "seed:admin": "node src/data/seedAdmin.js",
     "lint": "eslint ."
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cloudinary": "^2.11.0",
     "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
+    "cors": "^2.8.6",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-validator": "^7.3.2",
