@@ -17,16 +17,27 @@ import couponRoutes from './routes/couponRoutes.js';
 import bannerRoutes from './routes/bannerRoutes.js';
 
 const app = express();
-const allowedOrigins = (process.env.CLIENT_URL || 'fresh-basket-alpha-three.vercel.app').split(',').map((origin) => origin.trim());
-const isLocalDevelopmentOrigin = (origin) => process.env.NODE_ENV !== 'production' && /^https?:\/\/(localhost|127\.0\.0\.1):\d+$/.test(origin);
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://fresh-basket-alpha-three.vercel.app",
+  process.env.CLIENT_URL,
+].filter(Boolean);
 
 app.use(helmet());
 app.use(cors({
   origin(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin) || isLocalDevelopmentOrigin(origin)) return callback(null, true);
-    return callback(new Error('This origin is not allowed to access the API'));
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    console.log("Blocked Origin:", origin);
+    return callback(new Error("CORS Not Allowed"));
   },
   credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 }));
 app.use(cookieParser());
 app.use(express.json({ limit: '10kb' }));
